@@ -1,14 +1,31 @@
 <div class="top-bar">
     <ul class="actions">
-        @forelse ($actions as $action)
-        <li class="action">
-            <a class="action-btn" href="{{ $action['route'] ?? null }}" onclick={{ $action['onclick'] ?? null }}>
-                <i class="fas fa-{{ $action['icon'] }}"></i>
-            </a>
-        </li>
-        @empty
-            
-        @endforelse
+        @isset($actions)
+            @forelse ($actions as $action)
+            <li class="action">
+                <a class="action-btn" href="{{ $action['route'] }}" onclick={{ $action['onclick'] ?? null }}>
+                    <i class="fas fa-{{ $action['icon'] }}"></i>
+                </a>
+            </li>
+            @empty
+                
+            @endforelse
+        @endisset   
+        @isset($postActions)
+            @forelse ($postActions as $action)
+            <li class="action">
+                <form action="{{ $action['route'] ?? null }}" method="post">
+                    <input type="text" name="_method" value="delete" hidden>
+                    <button class="action-btn" type="submit" onclick={{ $action['onclick'] ?? null }}>
+                        <i class="fas fa-{{ $action['icon'] }}"></i>
+                    </button>
+                    {{ csrf_field() }}
+                </form>
+            </li>
+            @empty
+                
+            @endforelse
+        @endisset
     </ul>
 </div>
 <nav class="sidebar">
@@ -19,7 +36,7 @@
     </button>
     <div class="brand">
         @component('components.logo', ['url' => route('inicio'), 'size' => 32])
-        Laramon
+            Laramon
         @endcomponent
     </div>
     

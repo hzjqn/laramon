@@ -48,7 +48,7 @@ class PokemonController extends Controller
      */
     public function uno(Pokemon $Pokemon) //Ver el detalle de un Pokémon
     {
-        return view('pokemon.show', compact('Pokemon'));
+        return view('pokemon.show', ['pokemon' => $Pokemon]);
     }
 
     /**
@@ -83,5 +83,6 @@ class PokemonController extends Controller
     public function borrar(Pokemon $Pokemon)//Eliminar un Pokémon
     {
         // Borrar row segun request
+        Pokemon::destroy($Pokemon->id);
     }
 }
