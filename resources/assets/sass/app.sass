@@ -1,0 +1,279 @@
+//colors
+$_pokedex_red: #f44242
+
+$_red: $_pokedex_red
+$_black: #222222
+$_white: #efefef;
+
+//breakpoints
+$_lg: 1024px
+$_md: 768px
+$_sm: 480px
+$_xs: 360px
+
+body,
+html
+    margin: 0px
+    padding: 0px
+    font-family: 'Raleway', sans-serif
+    background: $_white
+
+figure
+    margin: 0px
+
+.top-bar
+    position: fixed
+    top: 0px
+    left: 0px
+    height: 48px
+    width: 100%
+    display: flex
+    flex-direction: row
+    justify-content: flex-end
+    align-items: center
+    background: $_white
+    overflow: hidden
+    a
+        color: $_red
+
+    .actions
+        margin: 0px
+        padding: 0px
+        width: 100%
+        list-style: none
+        display: flex
+        flex-direction: row
+        justify-content: flex-end
+        align-items: center
+        li
+            margin: 0px
+            padding: 0px
+            height: 48px
+            width: 48px
+            display: flex
+            flex-direction: row
+            justify-content: center
+            align-items: center
+            a
+                flex: 1
+                text-decoration: none                
+                display: flex
+                flex-direction: row
+                justify-content: center
+                align-items: center
+    
+
+.comp-logo
+    transition: transform .15s
+    figure.logo[data-size="32"]
+        display: block
+        height: 32px
+        width: 32px
+        overflow: hidden
+        border-radius: 100%
+        position: relative
+        transition: transform .15s
+        i
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+
+        i.semi-circle
+            transform: translate(-50%, -100%)
+            
+
+            @for $_i from 1 through 100
+                &
+                    border-top-left-radius: #{32 * $_i/10 + "px"}
+                    border-top-right-radius: #{32 * $_i/10 + "px"}
+                &.w-#{$_i}
+                    width: #{$_i + "%"}
+                
+                &.h-#{$_i}
+                    height: #{$_i/2 + "%"}
+        
+        i.circle
+            border-radius: 100%
+
+            @for $_i from 1 through 100
+                &.w-#{$_i}
+                    width: #{$_i + "%"}
+                
+                &.h-#{$_i}
+                    height: #{$_i + "%"}
+            
+            
+        @for $_i from 1 through 10
+            i.l-#{$_i}
+                z-index: #{$_i}
+
+        i.c-w
+            background-color: $_white;
+        i.c-b
+            background-color: $_black;
+        i.c-r
+            background-color: $_red;
+        
+
+.sidebar
+    display: flex
+    flex-direction: column
+    position: fixed
+    top: 0px
+    left: 0px
+    height: 100vh
+    width: 100%
+    max-width: 48px
+    background: $_pokedex_red
+    transition: max-width .5s
+    z-index: 999999
+
+    .sidebar-links
+        overflow: hidden
+        display: flex
+        list-style: none
+        padding: 0px
+        margin: 0px
+        justify-content: flex-start
+        flex-direction: column
+
+        li
+            display: flex
+            flex-direction: row
+            flex-wrap: nowrap
+            width: 100vw;
+            a
+                text-decoration: none
+                display: flex
+                color: $_black
+                justify-content: center
+                padding: 16px
+                font-weight: 600
+            i
+                border-radius: 3px solid $_black
+                width: 16px
+                height: 16px
+                line-height: 16px
+                display: inline-flex
+                justify-content: center
+                align-items: center
+                margin-right: 16px
+
+            &.active
+                border-top-left-radius: 24px
+                border-bottom-left-radius: 24px
+                background-color: $_white
+
+    .menu-btn
+        display: block
+        position: relative
+        width: 48px
+        height: 48px
+        transition: all .25s
+        background: transparent
+        border: none
+        outline: none
+
+        .icon-bar
+            display: block
+            position: absolute
+            width: 24px
+            height: 3px
+            background-color: $_black
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+
+            &:nth-child(1)
+                margin-top: -6px
+            
+            &:nth-child(3)
+                margin-top: 6px
+
+    .comp-logo
+        text-decoration: none
+        color: $_white
+        box-sizing: border-box
+        display: flex
+        position: absolute;
+        justify-content: flex-start
+        align-items: center
+        height: 48px
+        padding: 8px
+        left: 48px
+        top: 0px
+        h1
+            padding: 0px
+            margin: 0px .25em
+            color: $_black
+
+    &.on
+        max-width: 360px
+
+        & + .content-container
+            @media screen and (min-width: $_md)
+                &
+                    padding-left: 360px
+
+    & + .content-container
+        transition: padding .5s
+        &
+            padding-top: 48px
+            padding-left: 48px 
+
+.start
+    ul
+        display: flex
+        margin: 0px
+        padding: 0px
+        width: 100%
+        position: relative
+        height: calc(100vh - 48px)
+        background-image: url('../img/pokemon.jpg')
+        flex-direction: column
+        li
+            display: flex
+            flex-direction: row
+            flex: 1
+
+            a
+                text-decoration: none
+                font-size: 3em
+                display: flex
+                flex: 1
+                justify-content: center
+                align-items: center
+                color: $_black
+                background-color: fade-out($_white, .15)
+                font-weight: 600
+
+                &:hover
+                    background-color: fade-out($_red, .25)
+                
+                .link-block
+                    text-align: center
+
+                    figure
+                        font-size: 64px
+        
+        @media screen and (min-width: $_md)
+            &
+                flex-direction: row
+                background-attachment: fixed
+.pokecard
+    display: flex
+    background: white
+    margin: 4px
+    border-radius: 8px
+    padding: 8px
+    h2
+        margin: 0px
+        line-height: 1em
+    
+    figure
+        display: flex
+        img
+            height: 32px
+
+.typecard

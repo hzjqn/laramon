@@ -15,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Blade::component('components.logo', 'logo');
+        Blade::component('components.pokecard', 'pokecard');
         Schema::defaultStringLength(191);
     }
 
@@ -25,6 +27,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Blade::component('components.logo', 'logo');
     }
 }

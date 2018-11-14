@@ -15,6 +15,8 @@ class PokemonController extends Controller
     public function todos() //Ver la lista de Pokémon
     {
         //
+        $allPokemon = Pokemon::all();
+        return view('pokemon.index', compact('allPokemon'));
     }
 
     /**
@@ -24,7 +26,7 @@ class PokemonController extends Controller
      */
     public function nuevo()// Agregar un nuevo Pokémon
     {
-        //
+        return view('pokemon.create');
     }
 
     /**
@@ -35,51 +37,51 @@ class PokemonController extends Controller
      */
     public function guardar(Request $request)// Agregar un nuevo Pokémon
     {
-        //
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Pokemon  $pokemon
+     * @param  \App\Pokemon  $Pokemon
      * @return \Illuminate\Http\Response
      */
-    public function uno(Pokemon $pokemon) //Ver el detalle de un Pokémon
+    public function uno(Pokemon $Pokemon) //Ver el detalle de un Pokémon
     {
-        //
+        return view('pokemon.show', compact('Pokemon'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Pokemon  $pokemon
+     * @param  \App\Pokemon  $Pokemon
      * @return \Illuminate\Http\Response
      */
-    public function editar(Pokemon $pokemon)// Modificar un Pokémon
+    public function editar(Pokemon $Pokemon)// Modificar un Pokémon
     {
-        //
+        return view('pokemon.create', compact('Pokemon'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pokemon  $pokemon
+     * @param  \App\Pokemon  $Pokemon
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, Pokemon $pokemon)// Modificar un Pokémon
+    public function actualizar(Request $request, Pokemon $Pokemon)// Modificar un Pokémon
     {
-        //
+        // Modificar table segun request
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Pokemon  $pokemon
+     * @param  \App\Pokemon  $Pokemon
      * @return \Illuminate\Http\Response
      */
-    public function borrar(Pokemon $pokemon)//Eliminar un Pokémon
+    public function borrar(Pokemon $Pokemon)//Eliminar un Pokémon
     {
-        //
+        // Borrar row segun request
     }
 }

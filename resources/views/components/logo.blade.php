@@ -1,10 +1,12 @@
-<a class="comp_logo" href="{{ $url }}">
-  <article class="fa-stack fa-2x">
-    <i class="fas fa-circle fa-stack-2x" style="color:White"></i>
-    <i class="fas fa-adjust fa-stack-2x fa-rotate-90" style="color:Tomato"></i>
-    <i class="fas fa-circle fa-stack-1x" style="color:White; font-size: 0.75em"></i>
-    <i class="fas fa-circle fa-stack-1x" style="color:Black; font-size: 0.5em"></i>
-    <i class="far fa-circle fa-stack-2x" style="color:Black"></i>
-  </article>
-  <h2>{{ $slot }}</h2>
+<a class="comp-logo" href="{{ $url }}">
+  <figure class="logo" data-size="32">
+    <i class="circle w-35 h-35 c-w l-6"></i>
+    <i class="semi-circle w-85 h-85 c-r l-5 r-90"></i>
+    <i class="circle w-80 h-80 c-w l-4 r-90"></i>
+    <i class="circle w-90 h-90 c-r l-3"></i>
+    <i class="circle w-80 h-80 c-w l-2"></i>
+    <i class="circle w-25 h-25 c-b l-7"></i>
+    <i class="circle w-100 h-100 c-b l-1"></i>
+  </figure>
+  <h1>{{ $slot }}</h1>
 </a>
