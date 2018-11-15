@@ -41,7 +41,32 @@ class PokemonController extends Controller
      */
     public function guardar(Request $request)// Agregar un nuevo Pokémon
     {
+        $types = Type::all();
 
+        // Modificar table segun request
+        $rules = [
+            'name' => 'required|unique:pokemon|max:255',
+            'type_id' => 'required|exists:pokemon,id',
+            'height' => 'required|numeric' ,
+            'weight' => 'required|numeric' 
+        ];
+
+        $valid = Validator::make($request->all(), $rules);
+
+        if($valid->fails()){
+            return Redirect::to(route('pokemon.editar',[
+                'pokemon'=>$Pokemon->id, 
+                'types' => $types]))->withErrors($valid);
+        } else {
+            $Pokemon = Pokemon::create();
+            $Pokemon->name = $request->name;
+            $Pokemon->type_id = $request->type_id;
+            $Pokemon->height = $request->height;
+            $Pokemon->weight = $request->weight;
+            $Pokemon->save();
+        }
+
+        return view('pokemon.show', ['pokemon'=>$Pokemon]);
     }
 
     /**
