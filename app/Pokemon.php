@@ -10,6 +10,7 @@ class Pokemon extends Model
 
     // Se apunta a la tabla indicada
     protected $table = 'pokemon';
+    protected $fillable = ['name', 'weight', 'height', 'evolves_id', 'evolves_from_id', 'type_id'];
 
     public function type(){
         return $this->belongsTo(Type::class);

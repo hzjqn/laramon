@@ -9,8 +9,7 @@
     <div class="content-container">
     <form class="pokecard fullscreen poke-info top-bar-excecutable" method="post">
         @csrf
-        <input type="text" name="_method" value="put" hidden>
-            <div class="pokemain">
+        <div class="pokemain">
                 <input type="text" name="name" id="name" value="{{ old('name') }}">
             </div>
             <div class="row">

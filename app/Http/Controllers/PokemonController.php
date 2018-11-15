@@ -58,12 +58,12 @@ class PokemonController extends Controller
                 'pokemon'=>$Pokemon->id, 
                 'types' => $types]))->withErrors($valid);
         } else {
-            $Pokemon = Pokemon::create();
-            $Pokemon->name = $request->name;
-            $Pokemon->type_id = $request->type_id;
-            $Pokemon->height = $request->height;
-            $Pokemon->weight = $request->weight;
-            $Pokemon->save();
+            $Pokemon = Pokemon::create([
+                'name' => $request->name,
+                'type_id' => $request->type_id,
+                'height' => $request->height,
+                'weight' => $request->weight,
+            ]);
         }
 
         return view('pokemon.show', ['pokemon'=>$Pokemon]);
