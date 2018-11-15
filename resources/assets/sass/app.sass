@@ -33,7 +33,9 @@ figure
     align-items: center
     background: $_white
     overflow: hidden
-    a
+    a, button
+        background: $_white
+        border: none
         color: $_red
 
     .actions
@@ -54,7 +56,7 @@ figure
             flex-direction: row
             justify-content: center
             align-items: center
-            a
+            a, button
                 flex: 1
                 text-decoration: none                
                 display: flex
@@ -261,7 +263,49 @@ figure
             &
                 flex-direction: row
                 background-attachment: fixed
+
+.poke-info
+    background: white
+    border-radius: 8px
+    margin: 0px 8px
+    display: flex
+    font-family: 'Arial', sans-serif
+    .row
+        padding: 16px 0px
+        display: flex
+        flex-direction: row
+        border-top: $_white 1px dashed
+        &.col
+            justify-content: center
+            align-items: center
+            flex-direction: column
+        @media screen and (min-width: $_md)
+            &, &.col
+                flex-direction: row
+        .col, .col a
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            padding: 0px 16px
+            flex: 1
+
+        
 .pokecard
+
+    &.fullscreen
+        display: flex
+        flex-direction: column
+
+        .pokemain, .pokemain a
+            display: flex
+            padding: 8px
+            flex: 8
+            background-color: white
+            margin: 8px
+            flex-direction: row
+            justify-content: center
+            align-items: center
     a
         color: $_black
         text-decoration: none
@@ -277,22 +321,52 @@ figure
             align-items: center
             line-height: 1em
             margin: 0px
-        figure
+        
+        h6
             display: flex
+            flex-direction: row
+            justify-content: center
+            align-items: center
+            line-height: 1em
+            margin: 0px
+        figure, figure.icon
+            display: flex
+            justify-content: center
+            align-items: center
             img
                 margin: 0px 8px
                 height: 32px
 
 span.type-pill
     position: relative
-    width: 12px
-    height: 12px
-    border-radius: 24px
-    margin: 10px
+    font-size: 10px
+    line-height: 10px
+    width: 8px
+    height: 32px
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    border-radius: 2px
+    margin: 0px 8px
+    font-weight: 600
+
+span.type-tag
+    position: relative
+    padding: 4px 8px
+    font-size: 16px
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    border-radius: 2px
+    margin: 0px 8px
+    font-weight: 600
 
 span.pokeid
     border-radius: .1em
     width: 32px
+    height: 32px
     background-color: $_white
     display: flex
     justify-content: center

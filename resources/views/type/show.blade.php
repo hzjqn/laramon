@@ -1,4 +1,4 @@
-@extends('Template.basic')
+@extends('template.basic')
 
 @section('content')
 <section class="types">

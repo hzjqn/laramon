@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Pokemon;
+use App\Type;
 use Illuminate\Http\Request;
+use Validator;
+use Redirect;
 
 class PokemonController extends Controller
 {
@@ -25,8 +28,9 @@ class PokemonController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function nuevo()// Agregar un nuevo Pokémon
-    {
-        return view('pokemon.create');
+    {   
+        $types = Type::all();
+        return view('pokemon.create', compact('types'));
     }
 
     /**
@@ -58,8 +62,9 @@ class PokemonController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function editar(Pokemon $Pokemon)// Modificar un Pokémon
-    {
-        return view('pokemon.create', compact('Pokemon'));
+    {   
+        $types = Type::all();
+        return view('pokemon.edit', ['pokemon' => $Pokemon, 'types' => $types]);
     }
 
     /**
@@ -70,8 +75,33 @@ class PokemonController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function actualizar(Request $request, Pokemon $Pokemon)// Modificar un Pokémon
-    {
+    {        
+        $types = Type::all();
+
         // Modificar table segun request
+        $rules = [
+            'name' => 'required|unique:pokemon|max:255',
+            'type_id' => 'required|exists:pokemon,id',
+            'height' => 'required|numeric' ,
+            'weight' => 'required|numeric' 
+        ];
+
+        $valid = Validator::make($request->all(), $rules);
+
+        if($valid->fails()){
+            return Redirect::to(route('pokemon.editar',[
+                'pokemon'=>$Pokemon->id, 
+                'types' => $types]))->withErrors($valid);
+        } else {
+            $Pokemon->name = $request->name;
+            $Pokemon->type_id = $request->type_id;
+            $Pokemon->height = $request->height;
+            $Pokemon->weight = $request->weight;
+            $Pokemon->save();
+        }
+
+        return view('pokemon.show', ['pokemon'=>$Pokemon]);
+
     }
 
     /**
