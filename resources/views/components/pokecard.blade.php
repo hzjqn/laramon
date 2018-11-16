@@ -56,7 +56,7 @@
                     <div class="col">
                         <figure class="icon">
                             <img src="{{ asset('poke-img/images/poke-'.$pokemon->id.'.jpg') }}" alt="{{ $pokemon->name }}">
-                        </figure>
+                        </figure> 
                     </div>
                     <div class="col">></div>
                     <div class="col">
