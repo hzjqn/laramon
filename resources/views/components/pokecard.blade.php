@@ -43,7 +43,7 @@
                         <div class="col">
                             <a href="{{ route('pokemon.uno', $pokemon->evolves_from->id) }}">
                                 <figure class="icon">
-                                    <img src="{{ asset('poke-img/images/poke-'.$pokemon->id.'.jpg') }}" alt="{{ $pokemon->name }}"><h6> {{ $pokemon->evolves_from->name }} </h6>
+                                    <img src="{{ asset('poke-img/images/poke-'.$pokemon->evolves_from->id.'.jpg') }}" alt="{{ $pokemon->name }}"><h6> {{ $pokemon->evolves_from->name }} </h6>
                                 </figure>
                             </a>
                         </div>
